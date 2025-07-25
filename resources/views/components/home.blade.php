@@ -6,23 +6,24 @@
         <div class="flex flex-col lg:flex-row items-center justify-between">
             <div class="lg:w-3/5 mb-12 lg:mb-0">
                 <div class="mb-6 inline-block">
-                    <span class="text-red-500 text-lg font-semibold px-4 py-1 border border-red-500 rounded-full">Web
-                        Developer & Designer</span>
+                    <span
+                        class="text-red-500 text-lg font-semibold px-4 py-1 border border-red-500 rounded-full">{{ $introduction->highlights }}</span>
                 </div>
                 <div class="typewriter mb-6 md:mb-10 overflow-hidden w-fit">
                     <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">
-                        <span class="text-blue-400 text-shadow-lg/30 text-shadow-red-200">Hello, I'm
+                        <span class="text-blue-400 text-shadow-lg/30 text-shadow-red-200">
+                            {{ $introduction->greeting }}
                         </span>
-                        <span class="text-red-400 text-shadow-lg/30 text-shadow-blue-600">Ramesh</span>
+                        <span class="text-red-400 text-shadow-lg/30 text-shadow-blue-600">
+                            {{ $introduction->Name }}
+                        </span>
                     </h1>
                 </div>
                 <h2 class="text-3xl md:text-4xl font-bold mb-6 text-blue-300">
-                    Full Stack Developer
+                    {{ $introduction->title }}
                 </h2>
                 <p class="text-xl text-gray-300 mb-8 max-w-2xl">
-                    I craft digital experiences through clean code and innovative
-                    solutions. Specializing in modern web applications with focus on
-                    performance, scalability, and user experience.
+                    {{ $introduction->introduction_text }}
                 </p>
 
                 <div class="flex flex-wrap gap-4">
@@ -41,18 +42,11 @@
                 <div class="mt-12 flex items-center">
                     <span class="text-gray-400 mr-4">Follow me:</span>
                     <div class="flex space-x-4">
-                        <a href="#" class="text-blue-400 hover:text-yellow-400 text-xl transition duration-300">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="#" class="text-blue-400 hover:text-yellow-400 text-xl transition duration-300">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="#" class="text-blue-400 hover:text-yellow-400 text-xl transition duration-300">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="text-blue-400 hover:text-yellow-400 text-xl transition duration-300">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                        @foreach ($socialLinks as $link)
+                            <a href="{{ $link->url }}" target="_blank" class="text-blue-400 hover:text-yellow-400 text-xl transition duration-300">
+                                <i class="{{ $link->icon }}"></i>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -76,9 +70,11 @@
                             name: <span class="text-yellow-300">'Ramesh'</span>,
                         </div>
                         <div class="ml-4 text-green-400">
-                            skills: [<span class="text-yellow-300">'React'</span>,
-                            <span class="text-yellow-300">'Node.js'</span>,
-                            <span class="text-yellow-300">'Laravel'</span>],
+                            skills: [
+                            <span class="text-yellow-300">'Laravel'</span>,
+                            <span class="text-yellow-300">'View Js'</span>,
+                            <span class="text-yellow-300">'Livewire'</span>
+                            ],
                         </div>
                         <div class="ml-4 text-green-400">
                             passion:
@@ -117,14 +113,9 @@
         <!-- Scrolling skills/keywords -->
         <div class="mt-16 md:mt-24 pb-8 overflow-hidden">
             <div class="flex space-x-8 animate-pulse">
-                <span class="text-xl text-blue-300 font-medium whitespace-nowrap">JavaScript</span>
-                <span class="text-xl text-red-400 font-medium whitespace-nowrap">React.js</span>
-                <span class="text-xl text-yellow-400 font-medium whitespace-nowrap">Node.js</span>
-                <span class="text-xl text-blue-300 font-medium whitespace-nowrap">MongoDB</span>
-                <span class="text-xl text-red-400 font-medium whitespace-nowrap">Express</span>
-                <span class="text-xl text-yellow-400 font-medium whitespace-nowrap">UI/UX Design</span>
-                <span class="text-xl text-blue-300 font-medium whitespace-nowrap">Tailwind CSS</span>
-                <span class="text-xl text-red-400 font-medium whitespace-nowrap">TypeScript</span>
+                @foreach ($skills as $skill)
+                    <span class="text-xl {{ $skill->color }} font-medium whitespace-nowrap">{{ $skill->name }}</span>
+                @endforeach
             </div>
         </div>
     </div>
